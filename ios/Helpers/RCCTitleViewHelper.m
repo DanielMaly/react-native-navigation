@@ -193,6 +193,7 @@ navigationController:(UINavigationController*)navigationController
     
     CGSize labelSize = [titleLabel.text sizeWithAttributes:@{NSFontAttributeName:titleFont}];
     CGRect labelframe = titleLabel.frame;
+    labelSize.width += 1; // Fix for iOS 11 where the label size was calculated 1px too small and the text ended up being truncated
     labelframe.size = labelSize;
     titleLabel.frame = labelframe;
     
