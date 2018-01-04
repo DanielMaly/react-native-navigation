@@ -162,10 +162,15 @@
   }
 
   if(displayMiddleButton) {
+    CGFloat safeAreaInset = 0;
+    if (@available(iOS 11.0, *)) {
+      safeAreaInset = [[UIApplication sharedApplication] keyWindow].safeAreaInsets.bottom;
+    }
+    
     int buttonWidth = [middleButtonProps[@"width"] intValue];
     int buttonHeight = [middleButtonProps[@"height"] intValue];
     int middleViewX = self.view.bounds.size.width/2 - buttonWidth/2;
-    int middleViewY = self.view.bounds.size.height - buttonHeight;
+    int middleViewY = self.view.bounds.size.height - buttonHeight - safeAreaInset;
 
     UIButton *middleView = [UIButton buttonWithType:UIButtonTypeCustom];
     [middleView setFrame:CGRectMake(middleViewX, middleViewY, buttonWidth, buttonHeight)];
